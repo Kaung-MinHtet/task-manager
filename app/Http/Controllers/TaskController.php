@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Task;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -22,7 +23,13 @@ class TaskController extends Controller
             $query->orderBy($request->sort, 'asc');
         }
 
-        return response()->json($query->get());
+        // Fetch tasks and modify due_date
+        $tasks = $query->get()->map(function ($task) {
+            $task->due_date_human = Carbon::parse($task->due_date)->diffForHumans();
+            return $task;
+        });
+
+        return response()->json($tasks);
     }
 
     public function store(Request $request)

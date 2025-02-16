@@ -41,7 +41,7 @@
             <h3 class="text-lg font-semibold text-gray-800">{{ task.title }}</h3>
             <p class="text-sm text-gray-600">{{ task.description }}</p>
             <p class="text-sm mt-1">
-              <span class="font-semibold">Due:</span> {{ task.due_date }}
+              <span class="font-semibold">Due:</span> {{ task.due_date_human }}
             </p>
             <span class="inline-block mt-2 px-2 py-1 text-xs font-semibold rounded"
               :class="getPriorityColor(task.priority)">
