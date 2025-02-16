@@ -70,7 +70,7 @@
           return;
         }
         try {
-          await authStore.register({ name: name.value, email: email.value, password: password.value });
+          await authStore.register({ name: name.value, email: email.value, password: password.value, password_confirmation: passwordConfirm.value });
         } catch (error) {
           errorMessage.value = "Registration failed! Try again.";
         }

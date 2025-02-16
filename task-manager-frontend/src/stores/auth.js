@@ -11,6 +11,14 @@ export const useAuthStore = defineStore("auth", {
         isAuthenticated: (state) => !!state.token,
     },
     actions: {
+        async register(credentials) {
+            try {
+                const response = await api.post("/register", credentials);
+                window.location.href = "/login"; // 🔄 Redirect to Login
+            } catch (error) {
+                throw new Error(error.response.data.message);
+            }
+        },
         async login(credentials) {
             try {
                 const response = await api.post("/login", credentials);
@@ -25,11 +33,11 @@ export const useAuthStore = defineStore("auth", {
             }
         },
         async logout() {
-            await api.post("/logout");
             this.token = null;
             this.user = null;
             localStorage.removeItem("token");
             delete axios.defaults.headers.common["Authorization"];
+            await api.post("/logout");
             window.location.href = "/login"; // 🔄 Redirect to Login
         },
     },
