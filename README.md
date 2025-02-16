@@ -6,7 +6,10 @@ This is the backend API for the Task Manager application built with Laravel 11. 
 
 ### 1️⃣ Clone the Repository
 ```bash
-git clone https://github.com/yourusername/task-manager-backend.git
+git clone https://github.com/Kaung-MinHtet/task-manager.git
+```
+
+```bash
 cd task-manager
 ```
 
