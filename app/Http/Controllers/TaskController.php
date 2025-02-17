@@ -23,6 +23,7 @@ class TaskController extends Controller
             $query->orderBy($request->sort, 'asc');
         }
 
+        date_default_timezone_set('Asia/Yangon');
         // Fetch tasks and modify due_date
         $tasks = $query->get()->map(function ($task) {
             $task->due_date_human = Carbon::parse($task->due_date)->diffForHumans();

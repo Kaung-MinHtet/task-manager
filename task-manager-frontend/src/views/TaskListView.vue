@@ -35,14 +35,15 @@
         <p v-if="filteredTasks.length === 0" class="text-gray-500 text-center">No tasks available</p>
 
         <div v-for="task in filteredTasks" :key="task.id"
-          class="p-4 border rounded-md shadow-md flex flex-col md:flex-row gap-y-4 justify-between md:items-center transition hover:shadow-lg"
+          class="p-4 border rounded-md shadow-md flex flex-col md:flex-row gap-y-4 justify-between md:items-center transition hover:shadow-lg relative"
           :class="getStatusClass(task.is_completed)">
           <div>
             <h3 class="text-lg font-semibold text-gray-800">{{ task.title }}</h3>
             <p class="text-sm text-gray-600">{{ task.description }}</p>
             <p class="text-sm mt-1">
-              <span class="font-semibold">Due:</span> {{ task.due_date_human }}
+              <span class="font-semibold">Due Time:</span> {{ task.due_date }}
             </p>
+            <p class="px-2 py-1 absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 rounded bg-white text-sm">{{ task.due_date_human }}</p>
             <span class="inline-block mt-2 px-2 py-1 text-xs font-semibold rounded"
               :class="getPriorityColor(task.priority)">
               {{ task.priority }}
@@ -114,7 +115,7 @@ export default {
     };
 
     const getStatusClass = (status) => {
-      return status ? 'bg-green-100 border-green-400 opacity-80' : 'bg-yellow-100 border-yellow-400';
+      return status ? ' border-green-600 border-2 opacity-80' : ' border-yellow-600 border-2';
     };
 
     onMounted(() => {
