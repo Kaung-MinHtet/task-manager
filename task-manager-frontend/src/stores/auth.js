@@ -33,11 +33,11 @@ export const useAuthStore = defineStore("auth", {
             }
         },
         async logout() {
+            await api.post("/logout", {user: this.user});
             this.token = null;
             this.user = null;
             localStorage.removeItem("token");
             delete axios.defaults.headers.common["Authorization"];
-            await api.post("/logout");
             window.location.href = "/login"; // 🔄 Redirect to Login
         },
     },
